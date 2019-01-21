@@ -1,2 +1,4 @@
 # nqueens
-Python solution of the n-queens problem
+Ssolutions of the n-queens problem
+
+queens.py is a Python solution for the n-queens problem.
