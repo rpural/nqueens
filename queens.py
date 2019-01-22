@@ -54,6 +54,19 @@ class Board:
                 if self._board[row][y] == 1:
                     return False
 
+        # Is there a queen anywhere on the two diaginals from the location?
+        for row in range( self._size ):
+            if not ( row == x ):
+                delta = row - x
+                if delta < 0:
+                    delta = -delta
+                    if 0 <= (y + delta) < self._size: 
+                        if self._board[row][y+delta] == 1:
+                            return False
+                    if 0 <= (y - delta) < self._size:
+                        if self._board[row][y-delta] == 1:
+                            return False
+
         return True
 
     def set_position( self, x, y ):
@@ -88,6 +101,17 @@ class Board:
             self._board[x][y] = 0
         return True
 
+    def count_queens( self ):
+        ''' count_queens()
+
+        Count and return the number of queens that have been placed on the board.
+        '''
+
+        total = 0
+        for i in range(self._size):
+            total += sum( self._board[i] )
+        return total
+
     def __str__( self ):
         ''' __str__()
 
@@ -120,8 +144,11 @@ if __name__ == "__main__":
     print( b.check_position( 3, 3 ))  # This should print "False"
     print(b)  # Print the board with a queen at (3,3)
 
-    b.set_position( 4, 4 )  # Place a queen at (4,4)
-    print(b)  #  Print the board
+    if b.check_position( 4, 4 ):  # Check location (4,4); Shouldn't be available
+        b.set_position( 4, 4 )  # Place a queen at (4,4) if (4,4) is available
+    if b.check_position( 5, 2 ):  # Check location (5,2); Should be available
+        b.set_position( 5, 2 )  # Place a queen at (5,2)
+    print(b)  #  Print the board. Should show only two queens
 
     for i in range(b._size):  # Print a numeric representation of the board
         print( b._board[i] )
@@ -136,5 +163,11 @@ if __name__ == "__main__":
 
     print( b.check_position( 2, 4 ))  # Check several positions on the board
     print( b.check_position( 4, 2 ))
+    print( b.count_queens())
+
     print( b.check_position( 4, 4 ))
+    b.set_position( 4, 4 )
     print( b.check_position( 5, 5 ))
+
+    print( b.count_queens())
+    print(b)
