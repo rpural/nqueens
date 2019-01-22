@@ -1,4 +1,4 @@
 # nqueens
-Ssolutions of the n-queens problem
+Solutions of the N-Queens Problem
 
-queens.py is a Python solution for the n-queens problem.
+board.py is a Python chess board class for solution for the n-queens problem.
