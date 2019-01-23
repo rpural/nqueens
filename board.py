@@ -13,15 +13,35 @@ class Board:
         Initialize a board, given its size. Size will default to 8, the
         size of a regulation chess board.
         '''
-        print("<init>")
+        # print("<init>")
         self._board = []
         self._size = size
+        self._solutions = 0
         row = []
         for j in range( self._size ):
             row.append(0)
         for i in range( self._size ):
             self._board.append( row.copy() )
-        print("<init> size=" + str(self._size))
+        # print("<init> size=" + str(self._size))
+
+    def get_size( self ):
+        ''' get_size()
+        Return the size of the board
+        '''
+        return self._size
+
+    def get_solution_count( self ):
+        ''' get_solution_count()
+        Get the number of solutions found so far
+        '''
+        return self._solutions
+
+    def incr_solution_count( self ):
+        ''' incr_solution_count()
+        Increment the number of solutions found so far
+        '''
+        self._solutions += 1
+        return self._solutions
 
     def check_position( self, x, y ):
         ''' check_position(x, y)
@@ -32,7 +52,7 @@ class Board:
         if there is already a queen there, or if the location is an invalid board
         position.
         '''
-        print("<check> x = {}, y = {} board(x,y) = {}".format(x, y, self._board[x][y]))
+        # print("<check> x = {}, y = {} board(x,y) = {}".format(x, y, self._board[x][y]))
 
         # Are x and y within range?
         if 0 <= x < self._size and 0 <= y < self._size: 
@@ -71,10 +91,10 @@ class Board:
 
     def set_position( self, x, y ):
         ''' set_position(x, y)
-        
+
         Place a queen on the board at the given location.
         '''
-        print("<set> x = {}, y = {}, size = {}".format(x, y, self._size))
+        # print("<set> x = {}, y = {}, size = {}".format(x, y, self._size))
 
         # Are x and y within range?
         if 0 <= x < self._size and 0 <= y < self._size:
@@ -94,7 +114,7 @@ class Board:
 
         Clear a queen from the given location
         '''
-        print("<clear> x = {}, y = {}, size = {}".format(x, y, self._size))
+        # print("<clear> x = {}, y = {}, size = {}".format(x, y, self._size))
 
         # Are x and y within range?
         if 0 <= x < self._size and 0 <= y < self._size:
