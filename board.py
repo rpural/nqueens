@@ -60,9 +60,12 @@ class Board:
         else:
             return False
 
+        # The below code isn't really necessary, as the code following it will also
+        # check the individual square as part of the row.
+
         # Is there a queen at the location?
-        if self._board[x][y]  == 1:
-            return False
+        # if self._board[x][y]  == 1:
+        #     return False
 
         # Is there a queen anywhere within the location's row?
         if 1 in self._board[x]:
